@@ -46,6 +46,7 @@ bool isCC1Mu2p(FitEvent* event, double EnuMin, double EnuMax);
  * publication reference to be updated
  */
 bool isCC1Mu1p(FitEvent* event, double EnuMin, double EnuMax);
+int getCC1Mu1pProtonIndex(FitEvent* event);
 std::vector<FitParticle*> GetCC1Mu1pProtonsInPS(FitEvent* event);
 
 /**

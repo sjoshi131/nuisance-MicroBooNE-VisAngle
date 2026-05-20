@@ -182,6 +182,7 @@
 
 #ifdef MicroBooNE_ENABLED
 #include "MicroBooNE_CC1Mu1p_XSec_1D_nu.h"
+#include "MicroBooNE_CC1Mu1p_VisAngle_XSec_1D_nu.h"
 #include "MicroBooNE_CC1Mu2p_XSec_1D_nu.h"
 #include "MicroBooNE_CC1MuNp_XSec_1D_nu.h"
 #include "MicroBooNE_CC1ENp_XSec_1D_nu.h"
@@ -1149,8 +1150,12 @@ MeasurementBase *CreateSample(nuiskey samplekey) {
                !name.compare("MicroBooNE_CC1Mu1p_XSec_1DECal_nu") ||
                !name.compare("MicroBooNE_CC1Mu1p_XSec_1DEQE_nu")) {
       return (new MicroBooNE_CC1Mu1p_XSec_1D_nu(samplekey));
-    } else if (!name.compare("MicroBooNE_CC1Mu0pNp_XSec_EMu_nu")) {
-      return (new MicroBooNE_CC1Mu0pNp_XSec_nu<kCC0pNpEMu>(samplekey));
+      } else if (!name.compare("MicroBooNE_CC1Mu1p_VisAngle_XSec_1DThetaVis_nu") ||
+              !name.compare("MicroBooNE_CC1Mu1p_VisAngle_XSec_1DCosThetaVis_nu") ||
+              !name.compare("MicroBooNE_CC1Mu1p_VisAngle_XSec_1DPMiss_nu") ||
+              !name.compare("MicroBooNE_CC1Mu1p_VisAngle_XSec_1DMuonCosTheta_nu")) {
+      return (new MicroBooNE_CC1Mu1p_VisAngle_XSec_1D_nu(samplekey));
+      } else if (!name.compare("MicroBooNE_CC1Mu0pNp_XSec_EMu_nu")) {      return (new MicroBooNE_CC1Mu0pNp_XSec_nu<kCC0pNpEMu>(samplekey));
     } else if (!name.compare("MicroBooNE_CC1Mu0pNp_XSec_CosThetaMu_nu")) {
       return (new MicroBooNE_CC1Mu0pNp_XSec_nu<kCC0pNpCosThetaMu>(samplekey));
     } else if (!name.compare("MicroBooNE_CC1Mu0pNp_XSec_ENu_nu")) {

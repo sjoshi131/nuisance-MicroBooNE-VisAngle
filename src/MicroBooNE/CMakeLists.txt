@@ -22,6 +22,7 @@ set(MicroBooNE_Impl_Files
   MicroBooNE_CC1ENp_XSec_1D_nu.cxx
   MicroBooNE_CC1Mu2p_XSec_1D_nu.cxx
   MicroBooNE_CC1Mu1p_XSec_1D_nu.cxx
+  MicroBooNE_CC1Mu1p_VisAngle_XSec_1D_nu.cxx
   MicroBooNE_CC1Mu0pNp_XSec_nu.cxx
   MicroBooNE_CC1Mu3DInc_XSec_nu.cxx
   MicroBooNE_NCpi0_XSec_nu.cxx
@@ -31,8 +32,10 @@ set(MicroBooNE_Impl_Files
 set(MicroBooNE_Hdr_Files
   MicroBooNE_CCInc_XSec_2DPcos_nu.h
   MicroBooNE_CC1MuNp_XSec_1D_nu.h
+  MicroBooNE_CC1ENp_XSec_1D_nu.h
   MicroBooNE_CC1Mu2p_XSec_1D_nu.h
   MicroBooNE_CC1Mu1p_XSec_1D_nu.h
+  MicroBooNE_CC1Mu1p_VisAngle_XSec_1D_nu.h
   MicroBooNE_CC1Mu0pNp_XSec_nu.h
   MicroBooNE_CC1Mu3DInc_XSec_nu.h
   MicroBooNE_NCpi0_XSec_nu.h

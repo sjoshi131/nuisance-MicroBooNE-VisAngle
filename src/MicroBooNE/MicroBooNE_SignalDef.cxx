@@ -168,6 +168,15 @@ std::vector<FitParticle*> GetCC1Mu1pProtonsInPS(FitEvent* event){
   return protons_in_ps;
 }
 
+int getCC1Mu1pProtonIndex(FitEvent* event) {
+  std::vector<int> proton_indices = event->GetAllFSParticleIndices(2212);
+  for (int idx : proton_indices) {
+    double mom = event->GetParticleMom(idx);
+    if (mom > 300 && mom < 1000) { return idx; }
+  }
+  return -1;
+}
+
 bool isCC1Mu1p(FitEvent* event, double EnuMin, double EnuMax) {
   // Check CC inclusive
   if (!SignalDef::isCCINC(event, 14, EnuMin, EnuMax)) return false;
@@ -186,15 +195,23 @@ bool isCC1Mu1p(FitEvent* event, double EnuMin, double EnuMax) {
   if (event->NumFSParticle(111) != 0) return false;
 
   // Reject events with positively charged pions above 70 MeV/c
-  if (event->NumFSParticle(211) != 0) {
-    double ppiplus = event->GetHMFSParticle(211)->p();
-    if (ppiplus > 70) { return false; }
+  for (auto pi : event->GetAllFSParticle(211)) {
+    if (pi->p() > 70) return false;
   }
 
   // Reject events with negatively charged pions above 70 MeV/c
-  if (event->NumFSParticle(-211) != 0) {
-    double ppiminus = event->GetHMFSParticle(-211)->p();
-    if (ppiminus > 70) { return false; }
+  for (auto pi : event->GetAllFSParticle(-211)) {
+    if (pi->p() > 70) return false;
+  }
+
+  // Reject heavier mesons
+  for (auto p : event->GetAllFSParticle()) {
+    int pdg = std::abs(p->PDG());
+    // Already checked 111, 211. Check for any other meson (K, eta, etc.)
+    // PDG meson range is typically 100-999 excluding baryons
+    if (pdg != 211 && pdg != 111 && pdg > 100 && pdg < 1000) {
+       return false; 
+    }
   }
 
   return true;
